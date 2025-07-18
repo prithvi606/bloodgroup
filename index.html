@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Awareness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #457b9d;
+            --light: #f1faee;
+            --dark: #1d3557;
+            --accent: #a8dadc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1cf45443-4148-45c9-9ebf-68ea13c8dbf5.png');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .info-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .info-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .info-box p {
+            margin-bottom: 1rem;
+        }
+        
+        .blood-group-chart {
+            width: 100%;
+            height: 400px;
+            background-color: var(--accent);
+            border-radius: 10px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">BloodAware</div>
+                <ul class="nav-links">
+                    <li><a href="#types">Blood Types</a></li>
+                    <li><a href="#rare">Rare Types</a></li>
+                    <li><a href="#diseases">Diseases</a></li>
+                    <li><a href="#distribution">Distribution</a></li>
+                    <li><a href="#genetics">Genetics</a></li>
+                    <li><a href="#precautions">Precautions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Understanding Blood Groups</h1>
+            <p>Learn about different blood types, their distribution, importance in transfusions, and their connection to health and genetics.</p>
+            <a href="#types" class="btn">Learn More</a>
+        </div>
+    </section>
+    
+    <section id="types">
+        <div class="container">
+            <h2 class="section-title">Blood Group Types</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f3c35e7-9491-4b45-840d-974a03e58a7b.png" alt="Red blood cells shaped like letter A floating in plasma">
+                    </div>
+                    <div class="card-content">
+                        <h3>Type A</h3>
+                        <p>People with type A blood have the A antigen on red blood cells and anti-B antibodies in plasma. They can donate to A and AB blood types.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c4bf4aa7-6ffe-49bc-ad5f-5f2abe3f6e23.png" alt="Red blood cells shaped like letter B with antibodies floating around them">
+                    </div>
+                    <div class="card-content">
+                        <h3>Type B</h3>
+                        <p>Type B blood has the B antigen on red cells and anti-A antibodies in plasma. Can donate to B and AB blood types.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/321da803-9e73-43a8-91cc-71e8cbb461ee.png" alt="Red blood cells displaying both A and B antigens with a plus sign">
+                    </div>
+                    <div class="card-content">
+                        <h3>Type AB</h3>
+                        <p>This rare blood type has both A and B antigens but no antibodies. AB individuals are universal plasma donors.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f06ab7b5-5fb4-42da-b25f-a709b1e813b6.png" alt="Clean red blood cells without antigens in a plasma solution">
+                    </div>
+                    <div class="card-content">
+                        <h3>Type O</h3>
+                        <p>Type O negative blood is the universal donor as it lacks A, B or RhD antigens. Contains both anti-A and anti-B antibodies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="rare" style="background-color: var(--accent);">
+        <div class="container">
+            <h2 class="section-title">Rare Blood Groups</h2>
+            <div class="info-box">
+                <h3>Beyond ABO: The Rare Blood Types</h3>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4a59500a-e2d2-4eb8-b60a-08598ac99e2b.png" alt="Comparison chart showing frequency of different rare blood types worldwide with percentages" style="width: 100%; margin: 1rem 0; border-radius: 8px;">
+                <p>While most people are familiar with the ABO blood types, there are actually over 30 blood group systems recognized by the International Society of Blood Transfusion. Some rare blood types include:</p>
+                
+                <table>
+                    <tr>
+                        <th>Blood Type</th>
+                        <th>Prevalence</th>
+                        <th>Characteristics</th>
+                    </tr>
+                    <tr>
+                        <td>Rh-null</td>
+                        <td>1 in 6 million</td>
+                        <td>Lacks all Rh antigens, called "golden blood"</td>
+                    </tr>
+                    <tr>
+                        <td>Bombay Blood Group (hh)</td>
+                        <td>1 in 10,000 in India</td>
+                        <td>Lacks H antigen, can only receive from other Bombay donors</td>
+                    </tr>
+                    <tr>
+                        <td>Duffy-negative</td>
+                        <td>Common in Africans</td>
+                        <td>Resistant to malaria but can complicate transfusions</td>
+                    </tr>
+                    <tr>
+                        <td>Kell</td>
+                        <td>9% positive</td>
+                        <td>Important in pregnancy (can cause HDFN)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <section id="diseases">
+        <div class="container">
+            <h2 class="section-title">Blood Groups and Diseases</h2>
+            <div class="grid">
+                <div class="info-box" style="border-left: 4px solid var(--primary);">
+                    <h3>Heart Disease & Blood Types</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/184cea1a-c602-4251-b94f-bdbbed7533ed.png" alt="Infographic comparing cardiovascular disease risks among different blood types" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+                    <p>Extensive research has revealed connections between ABO blood groups and cardiovascular health:</p>
+                    <ul>
+                        <li><strong>Type A:</strong> 5-10% higher coronary disease risk due to higher von Willebrand factor</li>
+                        <li><strong>Types B & AB:</strong> Moderate increased risk of venous thrombosis</li>
+                        <li><strong>Type O:</strong> Protective effects due to lower clotting factor levels</li>
+                    </ul>
+                    <p>These differences highlight the importance of personalized prevention strategies.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Blood Groups & Cancer Susceptibility</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/db2507dc-75d9-4c2f-8419-b01bb9fff65f.png" alt="Comparative risk chart showing cancer incidence correlations with different blood types" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+                    <p>Research reveals intriguing connections between blood types and cancer risks:</p>
+                    <ul>
+                        <li><strong>Gastric Cancer:</strong> 20% higher risk in Type A due to H. pylori bacteria interactions</li>
+                        <li><strong>Pancreatic Cancer:</strong> 37% lower risk in Type O compared to AB</li>
+                        <li><strong>Breast Cancer:</strong> Slightly elevated risk in Type B</li>
+                        <li><strong>Peptic Ulcers:</strong> Type O has 35-50% higher risk</li>
+                    </ul>
+                    <p>While intriguing, these associations require more research before clinical application.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3>The Duffy System and Malaria Resistance</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f0ab16e7-6836-425c-9552-d51819fd82a2.png" alt="Detailed microscopic view showing interaction between malaria parasites and Duffy-negative red blood cells with explanatory labels" style="width:100%;border-radius:8px;margin-bottom:1rem;">
+                    <p>The Duffy blood group system plays a crucial role in malaria resistance. Individuals with Duffy-negative blood type (common in African populations) have natural resistance to Plasmodium vivax malaria because:</p>
+                    <ul>
+                        <li>The Duffy antigen serves as a receptor for the malaria parasite</li>
+                        <li>Without this receptor, the parasite cannot invade red blood cells</li>
+                        <li>This evolved as a protective genetic adaptation in malaria-endemic regions</li>
+                        <li>Approximately 95% of West Africans are Duffy-negative</li>
+                    </ul>
+                    <p>This example shows how blood group evolution is tightly linked to disease prevalence and environmental pressures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="distribution" style="background-color: #e9f7ef;">
+        <div class="container">
+            <h2 class="section-title">Global Distribution of Blood Types</h2>
+            <div class="info-box">
+                <h3>Population Frequency</h3>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51a086b1-c5e8-4d0c-842d-4f153a78cf53.png" alt="World map visualization showing prevalence of different blood types by region with color coding">
+                
+                <div class="blood-group-chart">
+                    Graphical representation of blood type distribution by region will appear here
+                </div>
+                
+                <h4>Selected Country Examples:</h4>
+                <ul>
+                    <li><strong>United States:</strong> O+ (37%), A+ (36%), B+ (9%), AB+ (3%), O- (7%), A- (6%), B- (2%), AB- (1%)</li>
+                    <li><strong>India:</strong> B (32%), O (30%), A (28%), AB (9%)</li>
+                    <li><strong>Brazil:</strong> O (46%), A (42%), B (9%), AB (3%)</li>
+                    <li><strong>China:</strong> O (34%), A (27%), B (30%), AB (9%)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="genetics">
+        <div class="container">
+            <h2 class="section-title">Genetics of Blood Groups</h2>
+            <div class="grid">
+                <div class="info-box">
+                    <h3>Inheritance Patterns</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f98d768-7b10-4230-8812-9415eda4b12b.png" alt="Genetic pedigree chart showing inheritance of ABO blood groups across three generations">
+                    <p>The ABO blood group is determined by the ABO gene on chromosome 9. There are three alleles: A, B, and O. A and B are codominant; O is recessive. Rh factor is determined by the RHD gene on chromosome 1.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">Parental Blood Type Combinations:</h4>
+                    <table>
+                        <tr>
+                            <th>Parents</th>
+                            <th>Possible Child</th>
+                            <th>Impossible Child</th>
+                        </tr>
+                        <tr>
+                            <td>A x A</td>
+                            <td>A, O</td>
+                            <td>B, AB</td>
+                        </tr>
+                        <tr>
+                            <td>A x B</td>
+                            <td>A, B, AB, O</td>
+                            <td>None</td>
+                        </tr>
+                        <tr>
+                            <td>AB x O</td>
+                            <td>A, B</td>
+                            <td>AB, O</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Evolutionary Perspectives</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fec888a7-7f1b-415a-a823-ef6541ea7519.png" alt="Human migration map showing spread of different blood group genes throughout history">
+                    <p>The distribution of blood groups reflects human migration and natural selection. Type O is oldest, emerging in early humans. Type A appeared with agriculture, while Type B spread through nomadic tribes. Certain blood types provide protection against diseases prevalent in specific regions.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">Notable Evolutionary Adaptations:</h4>
+                    <ul>
+                        <li>High frequency of type O in indigenous South Americans (almost 100%)</li>
+                        <li>Type B more common in Central Asia (possibly spread by Mongols)</li>
+                        <li>Type A frequencies increasing towards Western Europe</li>
+                        <li>Duffy-negative conferring malaria resistance in Africa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="precautions">
+        <div class="container">
+            <h2 class="section-title">Precautions & Blood Pressure</h2>
+            <div class="grid">
+                <div class="info-box">
+                    <h3>Blood Donation Considerations</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/309cc3f6-c6c9-40fe-9bbe-b81f8237911c.png" alt="Medical professional checking blood pressure of donor before transfusion procedure">
+                    <p>Understanding your blood type is crucial for safe transfusions. Key precautions:</p>
+                    <ul>
+                        <li>Only type O- can donate to all (universal donor)</li>
+                        <li>AB+ can receive from all (universal recipient)</li>
+                        <li>Rh-negative individuals must receive Rh-negative blood</li>
+                        <li>Pregnant Rh-negative women need Rhogam shots</li>
+                        <li>Rare blood type individuals should register with blood banks</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Blood Pressure & Type</h3>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2aa4d19d-1182-4598-b7d6-41a5f9dd5074.png" alt="Digital blood pressure monitor showing different readings with blood type indicators">
+                    <p>Emerging research suggests blood type may influence cardiovascular health:</p>
+                    <table>
+                        <tr>
+                            <th>Blood Type</th>
+                            <th>Average Systolic BP</th>
+                            <th>Associated Risks</th>
+                        </tr>
+                        <tr>
+                            <td>Type A</td>
+                            <td>Higher</td>
+                            <td>+5% coronary disease risk</td>
+                        </tr>
+                        <tr>
+                            <td>Type O</td>
+                            <td>Lower</td>
+                            <td>Bleeding risk but heart protection</td>
+                        </tr>
+                        <tr>
+                            <td>Type AB</td>
+                            <td>Highest</td>
+                            <td>Increased clotting risks</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 1rem;">Recommended monitoring frequency varies by type and family history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 BloodAware. All rights reserved. Educational content only - consult a medical professional for health advice.</p>
+            <p>Created to promote blood group awareness and encourage safe blood donation.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Interactive elements would go here
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
